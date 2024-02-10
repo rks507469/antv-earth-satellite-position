@@ -42,4 +42,3 @@ async function fetchDataEvery10Seconds() {
 
 // Call the function to start fetching data every 10 seconds for 1000 seconds
 fetchDataEvery10Seconds();
-console.log(project)

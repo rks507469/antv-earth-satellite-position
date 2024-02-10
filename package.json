@@ -10,6 +10,7 @@
   "author": "aslam,sanat,ravi",
   "license": "ISC",
   "dependencies": {
-    "@antv/l7": "^2.20.15"
+    "@antv/l7": "^2.20.15",
+    "node-fetch": "^3.3.2"
   }
 }
