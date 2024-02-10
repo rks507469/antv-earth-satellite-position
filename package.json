@@ -1,0 +1,14 @@
+{
+  "name": "antv-earth-satellite-position",
+  "version": "1.0.0",
+  "description": "geospatial satellite",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "aslam,sanat,ravi",
+  "license": "ISC",
+  "dependencies": {
+    "@antv/l7": "^2.20.15"
+  }
+}
