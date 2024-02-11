@@ -8,7 +8,7 @@ using data from the International Space Station (ISS) Location Now API.
 ## Features
 
 - Fetches real-time satellite position data from the [ISS Location Now API](http://open-notify.org/Open-Notify-API/ISS-Location-Now/).
-- Utilizes AntV's Earth visualization to display satellite positions.
+- Utilizes AntV's EarthMap visualization to display satellite positions.
 - Easy-to-use interface for tracking satellite movements.
 
 ## Installation
@@ -20,7 +20,7 @@ git clone https://github.com/your-username/antv-earth-satellite-position.git
 ```
 ## Navigate to the project directory and install dependencies:
 ```bash
-cd antv-earth-satellite-position
+cd antv-earth-satellite-position-frontend
 npm install
 ```
 
