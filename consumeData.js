@@ -3,6 +3,16 @@ const { Readable } = require('stream');
 class CustomStream extends Readable {
     constructor() {
         super({ objectMode: true }); // Set objectMode to true for streaming objects
+        this.controller = undefined; // No need to create a controller directly
+    this.dataQueue = []; // Queue to store the latest records
+    this.maxQueueSize = 6; // Maximum number of records to keep
+    this.stream = new ReadableStream({
+      start: controller => {
+        // This callback function receives the controller as an argument
+        this.controller = controller;
+      },
+      pull: () => {}
+    });
     }
 
     _read() {
@@ -10,13 +20,25 @@ class CustomStream extends Readable {
     }
 
     pushData(data) {
-        this.push(data);
+      // Add the latest data to the queue
+        this.dataQueue.push(data);
+
+        // Keep only the last 6 records
+    if (this.dataQueue.length > this.maxQueueSize) {
+      this.dataQueue.shift(); // Remove the oldest record
     }
+    this.controller.enqueue(data);
+    }
+    
 
     endStream() {
-        this.push(null); // Pushing null indicates the end of the stream
+      this.controller.close();
     }
-}
+
+    getStreamLength() {
+      return this.dataQueue.length;
+    }
+  }
 
 async function fetchData() {
     try {
@@ -47,12 +69,20 @@ setInterval(fetchDataAndSave, 1000);
 
 // Render coordinates from the stream
 const renderLoop = async () => {
-    for await (const data of coordinateStream) {
-        // Render the coordinates on the screen (replace this with your rendering logic)
-        console.log('Rendering coordinates:', data);
+  const reader = coordinateStream.stream.getReader();
 
-        // Simulate a delay (replace this with your rendering logic)
-        await new Promise(resolve => setTimeout(resolve, 1000));
+  while (true) {
+    const { value, done } = await reader.read();
+
+    if (done) {
+      console.log('Stream has ended.');
+      break;
+    }
+    // Render the coordinates on the screen (replace this with your rendering logic)
+    console.log('Rendering coordinates:', value, '  Length of the stream: ', coordinateStream.getStreamLength());
+
+    // Simulate a delay (replace this with your rendering logic)
+    await new Promise(resolve => setTimeout(resolve, 1000));
     }
 };
 
