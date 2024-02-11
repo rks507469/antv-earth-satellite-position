@@ -9,7 +9,9 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "@antv/l7": "^2.20.15",
+    "npx": "^10.2.2"
   },
   "scripts": {
     "start": "react-scripts start",
