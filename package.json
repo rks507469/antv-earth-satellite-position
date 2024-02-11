@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@antv/l7": "^2.20.15",
-    "node-fetch": "^3.3.2"
+    "node-fetch": "^3.3.2",
+    "npx": "^10.2.2"
   }
 }
